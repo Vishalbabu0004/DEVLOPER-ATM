@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Enquiry Interface</title>
+  <link rel="stylesheet" href="/responsive.css" />
+</head>
+<body>
+  <div class="atm-screen">
+    <div class="atm-header">
+      <img src="/logo1.png" alt="Bank Logo" class="atm-logo" style="margin-left: 18%;" />
+    </div>
+
+    <div class="atm-body">
+      <h2 class="atm-title">Welcome to Developer Bank ATM</h2>
+      <p class="atm-instruction">Your All Bank Details</p>
+
+      <h4 style="color: #0f0;;">Name : <span><%= user[0].name %></span></span></h4>
+      <h4 style="color: #0f0;;">Balance : <span><%= user[0].totalbalance %></span></span></h4><br>
+      
+      <form method="get" action="/home">
+        <button class="atm-button" type="submit">Back To Home</button>
+      </form>
+        
+   
+
+     
+    </div>
+  </div>
+</body>
+</html>

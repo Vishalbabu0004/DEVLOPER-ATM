@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Deposit Interface</title>
+  <link rel="stylesheet" href="/responsive.css" />
+</head>
+<body>
+  <div class="atm-screen">
+    <div class="atm-header">
+      <img src="/logo1.png" alt="Bank Logo" class="atm-logo" style="margin-left: 18%;" />
+    </div>
+
+    <div class="atm-body">
+      <h2 class="atm-title">Welcome to Developer Bank ATM</h2>
+      <p class="atm-instruction">Please Enter Your Amount</p>
+
+      <form method="post" action="/deposit?_method=PATCH" class="atm-form">
+        <input
+          type="number"
+          min="1"
+          max="1000000"
+          name="deposit"
+          class="atm-input"
+          placeholder="Enter Amount"
+          required
+        />
+        <button class="atm-button" type="submit">Deposit</button>
+      </form>
+
+      <% if (message) { %>
+        <div class="atm-error"><%= message %></div>
+      <% } %>
+    </div>
+  </div>
+
+ 
+</body>
+</html>

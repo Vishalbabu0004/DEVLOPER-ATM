@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ATM Features</title>
+  <link rel="stylesheet" href="/responsive.css" />
+  
+</head>
+<body>
+
+  <div class="atm-screen">
+    <div class="atm-header">
+      <img src="/logo1.png" alt="Bank Logo" class="atm-logo" style="margin-left: 18%;" />
+    </div>
+
+    <div class="atm-body">
+      <h2 class="atm-title">Select a Transaction</h2>
+
+      <div class="atm-options">
+        <div class="atm-column">
+          <form method="get" action="/features/withdraw">
+            <button class="atm-button full"><i class="fas fa-hand-holding-usd"></i>Withdraw</button>
+          </form>
+
+          <form method="get" action="/features/bill">
+            <button class="atm-button full"><i class="fas fa-file-invoice-dollar"></i> Bill Payment</button>
+          </form>
+
+          <form method="get" action="/features/enquiry">
+            <button class="atm-button full"><i class="fas fa-search-dollar"></i> Balance Inquiry</button>
+          </form>
+        </div>
+
+        <div class="atm-column">
+          <form method="get" action="/features/transfer">
+            <button class="atm-button full"><i class="fas fa-exchange-alt"></i>Bank Transfer</button>
+          </form>
+
+          <form method="get" action="/features/deposit">
+            <button class="atm-button full"><i class="fas fa-piggy-bank"></i>Cash Deposit</button>
+          </form>
+
+           <form method="get" action="/features/transaction">
+            <button class="atm-button full"><i class="fas fa-sign-out-alt"></i> Transaction</button>
+          </form>
+
+          <form method="get" action="/home">
+            <button class="atm-button full" style="margin-left: -50%; margin-right: 50%;"><i class="fas fa-sign-out-alt"></i> Exit</button>
+          </form>
+
+
+         
+         
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Transfer Interface</title>
+  <link rel="stylesheet" href="/responsive.css" />
+</head>
+<body>
+  <div class="atm-screen">
+    <div class="atm-header">
+     <img src="/logo1.png" alt="Bank Logo" class="atm-logo" style="margin-left: 18%;" />
+    </div>
+
+    <div class="atm-body">
+      <h2 class="atm-title">Welcome to Developer Bank ATM</h2><br>
+      
+<form method="post" action="/transfer/pay?_method=PATCH">
+      <h4 style="color: #0f0;;">Account No:</span><input
+          type="number"
+          class="atm-input"
+          placeholder="Account Number"
+          required
+        /></span></h4><br>
+        <h4 style="color: #0f0;;"> IFSC Code :</span><input
+          type="text"
+          class="atm-input"
+          placeholder="IFSC Code"
+          required
+        /></span></h4><br>
+        <h4 style="color: #0f0;;"> Transfer :</span><input
+          type="number"
+           min="1"
+          max="1000000"
+          name="transfer"
+          class="atm-input"
+          placeholder="Enter Amount"
+          required
+        /></span></h4>
+     
+      <br>
+      
+        <button class="atm-button" type="submit">Send</button>
+      </form>
+        
+   
+
+     
+    </div>
+  </div>
+</body>
+</html>

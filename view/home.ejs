@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ATM Interface</title>
+  <link rel="stylesheet" href="/responsive.css" />
+</head>
+<body>
+  <div class="atm-screen">
+    <div class="atm-header">
+      <img src="/logo1.png" alt="Bank Logo" class="atm-logo" />
+      <a href="http://localhost:8080/home/account" class="account-icon">
+        <img src="/acount.png" alt="Account" />
+      </a>
+    </div>
+
+    <div class="atm-body">
+      <h2 class="atm-title">Welcome to Developer Bank ATM</h2>
+      <p class="atm-instruction">Please Enter Your 4-digit PIN</p>
+
+      <form method="get" action="/features" class="atm-form">
+        <input
+          type="number"
+          min="1000"
+          max="9999"
+          name="password"
+          maxlength="4"
+          class="atm-input"
+          placeholder="Enter Pin"
+          required
+        />
+        <button class="atm-button" type="submit">Enter</button>
+      </form>
+
+      <% if (message) { %>
+        <div class="atm-error"><%= message %></div>
+      <% } %>
+    </div>
+  </div>
+
+  <script>
+    alert("<%= message %>");
+  </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Enquiry Interface</title>
+  <link rel="stylesheet" href="/responsive.css" />
+</head>
+<body>
+  <div class="atm-screen">
+    <div class="atm-header">
+      <img src="/logo1.png" alt="Bank Logo" class="atm-logo" style="margin-left: 18%;" />
+    </div>
+
+    <div class="atm-body">
+      <h2 class="atm-title">Welcome to Developer Bank ATM</h2>
+      <p class="atm-instruction">Your All Bank Transaction Details</p>
+
+     
+      <div class="transaction-container">
+  <% for(let transaction of trx) { %>
+   <% if (transaction.type == "Credit") { %>
+    <p class="atm-instruction"><span><%= transaction.date.toString().split(" ").slice(1,4)[1] %></span>&nbsp;&nbsp;<span><%= transaction.date.toString().split(" ").slice(1,4)[0] %></span>&nbsp;&nbsp;<span><%= transaction.date.toString().split(" ").slice(1,4)[2] %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">+ &nbsp;</span><%= transaction.history %>&nbsp;&nbsp;<span style="color: green;"><%= transaction.type %>&nbsp;&nbsp;&nbsp;&nbsp;</span><span><%= transaction.date.toString().split(" ").slice(4,6)[0] %></span></p>
+  <% } else{ %> 
+    <p class="atm-instruction"><span><%= transaction.date.toString().split(" ").slice(1,4)[1] %></span>&nbsp;&nbsp;<span><%= transaction.date.toString().split(" ").slice(1,4)[0] %></span>&nbsp;&nbsp;<span><%= transaction.date.toString().split(" ").slice(1,4)[2] %></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red;">- &nbsp;</span><%= transaction.history %>&nbsp;&nbsp;<span style="color: red;"><%= transaction.type %>&nbsp;&nbsp;&nbsp;&nbsp;</span><span><%= transaction.date.toString().split(" ").slice(4,6)[0] %></span></p>
+  <%  } %>
+  <% } %>
+</div>
+     
+      
+      <form method="get" action="/home">
+        <button class="atm-button" type="submit">Back To Home</button>
+      </form>
+        
+   
+
+     
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Account Interface</title>
+  <link rel="stylesheet" href="/responsive.css" />
+</head>
+<body>
+  <div class="atm-screen">
+    <div class="atm-header" style="margin-left: 35%;">
+      <img src="/logo1.png" alt="Bank Logo" class="atm-logo" style="margin-left: -24%; margin-right: 22%;" />
+      
+    </div>
+
+    <div class="atm-body">
+      <h2 class="atm-title">Welcome to Developer Bank ATM</h2><br>
+      
+<form method="post" action="/account">
+      <h4 style="color: #0f0; font-size: 15px;">Full Name:</span><input
+          type="text"
+          name="name"
+          class="atm-input"
+          placeholder="Enter Full Name"
+          required
+          style="height: 25px;"
+        /></span></h4><br>
+        <h4 style="color: #0f0;font-size: 15px;">Create Password :</span><input
+           type="number"
+          min="1000"
+          max="9999"
+          name="createpassword"
+          class="atm-input"
+          maxlength="4"
+          placeholder="Create Password"
+          required
+          style="width: 50%; height: 25px;"
+        /></span></h4><br>
+        <h4 style="color: #0f0;font-size: 15px;">Confirm Password   :</span><input
+           maxlength="4"
+          type="number"
+          min="1000"
+          max="9999"
+          name="confirmpassword"
+          name="transfer"
+          class="atm-input"
+          placeholder="Confirm Password"
+          required
+          style="width: 50%; height: 25px;"
+        /></span></h4><br>
+        <h4 style="color: #0f0;font-size: 15px;">Deposit :</span><input
+          type="number"
+           min="1"
+          max="100000000"   
+          name="amount"
+         maxlength="8"
+          name="transfer"
+          class="atm-input"
+          placeholder="Enter Amount"
+          required
+          style="height: 35px;"
+        /></span></h4>
+     
+      <br>
+      
+        <button class="atm-button" type="submit">Submit</button>
+      </form>
+        
+   
+
+     
+    </div>
+  </div>
+</body>
+</html>
