@@ -11,18 +11,22 @@ async function main() {
 
 
 const atmschema = new mongoose.Schema({
+  user : {
+    type : [String],
+    required: true
+  },
  
     history : {
       type : Number,
-      require : true
+      required : true
     },
     type : {
       type : String,
-      require : true
+      required : true
     },
     date : {
       type : Date,
-      require : true
+      required : true
     }
   
    

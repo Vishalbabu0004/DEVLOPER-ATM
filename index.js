@@ -73,7 +73,7 @@ app.get("/features",async(req,res)=>{
     console.log(data);
     id = password;
    
-if(data.length != 0){
+if(data.length != 0 ){
     res.render("feature.ejs")
 }else{
    
@@ -82,24 +82,6 @@ if(data.length != 0){
 }
 
 })
-
-
-
-
-
-
-
-
-// function trx(transactionl) {
-    
-//    return  ;
-// }
-
-
-
-
-
-
 
 
 
@@ -112,11 +94,12 @@ app.get("/features/deposit",(req,res)=>{
 // deposit 
 app.patch("/deposit",async(req,res)=>{
     let {deposit}=req.body;
-            if(deposit > 0){
+            if(deposit > 100 && deposit%100==0){
                 let user = await bank.find({password : id});
     let newbalance = user[0].totalbalance + Number(deposit);
 
      await banktrans.insertOne({
+        user : user[0].name ,
         history : deposit,
         type : "Credit",
         date : new Date()
@@ -130,7 +113,11 @@ app.patch("/deposit",async(req,res)=>{
      res.render("success.ejs",{
         message: "Deposit Success"
      })
-            }
+            }else{
+                res.render("inficient.ejs",{
+            message: "Deposit Error"
+            })
+        }
    
 })
 
@@ -147,9 +134,9 @@ app.get("/features/bill",(req,res)=>{
 
 // transaction
 app.get("/features/transaction",async(req,res)=>{
-
-    let trx = await banktrans.find({});
-    console.log("trx",trx.length);
+    let user = await bank.find({password : id});
+    let trx = await banktrans.find({user : user[0].name});
+    console.log("all trax",trx);
     res.render("transaction.ejs",{trx})
 
 })
@@ -173,6 +160,7 @@ app.patch("/withdraw",async(req,res)=>{
 
 
     await banktrans.insertOne({
+        user : user[0].name ,
         history : withdraw,
         type : "Debit",
         date : new Date()
@@ -223,6 +211,7 @@ app.patch("/bill/pay",async(req,res)=>{
 
 
         await banktrans.insertOne({
+         user : user[0].name ,
         history : bill,
          type : "Debit",
         date : new Date()
@@ -303,6 +292,7 @@ app.patch("/transfer/pay",async(req,res)=>{
         
 
         await banktrans.insertOne({
+        user : user[0].name ,  
         history : transfer,
          type : "Debit",
         date : new Date()
