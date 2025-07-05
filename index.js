@@ -33,7 +33,7 @@ app.post("/account",async(req,res)=>{
      if(createpassword == confirmpassword )
      {
         if(amount != typeof(String)){
-            let user = await bank.find({password : confirmpassword})
+            let user = await connectDB.find({password : confirmpassword})
         if(user.length == 0){
               bank.insertOne({
         name: name,
@@ -71,7 +71,7 @@ app.post("/account",async(req,res)=>{
 app.get("/features",async(req,res)=>{
     let {password}=req.query;
 
-    let data = await bank.find({password : password});
+    let data = await connectDB.find({password : password});
     console.log(data);
     id = password;
    
@@ -97,7 +97,7 @@ app.get("/features/deposit",(req,res)=>{
 app.patch("/deposit",async(req,res)=>{
     let {deposit}=req.body;
             if(deposit > 100 && deposit%100==0){
-                let user = await bank.find({password : id});
+                let user = await connectDB.find({password : id});
     let newbalance = user[0].totalbalance + Number(deposit);
 
      await banktrans.insertOne({
@@ -136,8 +136,8 @@ app.get("/features/bill",(req,res)=>{
 
 // transaction
 app.get("/features/transaction",async(req,res)=>{
-    let user = await bank.find({password : id});
-    let trx = await banktrans.find({user : user[0].name});
+    let user = await connectDB.find({password : id});
+    let trx = await connectDB.find({user : user[0].name});
     console.log("all trax",trx);
     res.render("transaction.ejs",{trx})
 
@@ -154,14 +154,14 @@ app.get("/features/withdraw",(req,res)=>{
 // withdraw
 app.patch("/withdraw",async(req,res)=>{
     let {withdraw}=req.body;
-  let user = await bank.find({password : id});
+  let user = await connectDB.find({password : id});
     console.log(user);
     if(withdraw%100==0){
         if(user[0].totalbalance >= withdraw){
     let newbalance = user[0].totalbalance - Number(withdraw);
 
 
-    await banktrans.insertOne({
+    await connectDB.insertOne({
         user : user[0].name ,
         history : withdraw,
         type : "Debit",
@@ -172,7 +172,7 @@ app.patch("/withdraw",async(req,res)=>{
 
 
 
-    let data = await bank.updateOne({password : id},{
+    let data = await connectDB.updateOne({password : id},{
         totalbalance :  newbalance
     });
     info = 1;
@@ -207,12 +207,12 @@ app.get("/electricbill",(req,res)=>{
 // pay  bill
 app.patch("/bill/pay",async(req,res)=>{
      let {bill}=req.body;
-     let user = await bank.find({password : id});
+     let user = await connectDB.find({password : id});
     console.log(user);
     if(user[0].totalbalance >= bill && bill != typeof(String)){
 
 
-        await banktrans.insertOne({
+        await connectDB.insertOne({
          user : user[0].name ,
         history : bill,
          type : "Debit",
@@ -221,7 +221,7 @@ app.patch("/bill/pay",async(req,res)=>{
 
 
     let newbalance = parseFloat(user[0].totalbalance) - parseFloat(bill);
-    let data = await bank.updateOne({password : id},{
+    let data = await connectDB.updateOne({password : id},{
         totalbalance :  newbalance
     });
     info = 1;
@@ -275,7 +275,7 @@ app.get("/internetbill",(req,res)=>{
 
 //enquiry feature
 app.get("/features/enquiry",async(req,res)=>{
-     let user = await bank.find({password : id});
+     let user = await connectDB.find({password : id});
     res.render("enquiry.ejs",{user})
    
 
@@ -288,12 +288,12 @@ res.render("transfer.ejs")
 // transfer
 app.patch("/transfer/pay",async(req,res)=>{
    let {transfer}=req.body;
-  let user = await bank.find({password : id});
+  let user = await connectDB.find({password : id});
     console.log(user);
     if(transfer%100==0 && user[0].totalbalance >= transfer){
         
 
-        await banktrans.insertOne({
+        await connectDB.insertOne({
         user : user[0].name ,  
         history : transfer,
          type : "Debit",
@@ -301,7 +301,7 @@ app.patch("/transfer/pay",async(req,res)=>{
     })
            
     let newbalance = user[0].totalbalance - Number(transfer);
-    let data = await bank.updateOne({password : id},{
+    let data = await connectDB.updateOne({password : id},{
         totalbalance :  newbalance
     });
     info = 1;
