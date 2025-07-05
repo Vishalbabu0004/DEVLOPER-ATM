@@ -322,6 +322,7 @@ app.patch("/transfer/pay",async(req,res)=>{
 })
 
 const port = process.env.PORT || 8080 ;
-app.listen(port,()=>{
+app.listen(port,async()=>{
+    await connectDB();
     console.log("litening port 8080");
 })
