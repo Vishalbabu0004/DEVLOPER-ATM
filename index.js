@@ -1,12 +1,14 @@
 const express = require("express");
 const app = express();
-const bank = require("./module/atm");
+//const bank = require("./module/atm");
 const path = require("path");
 const methodOverride = require('method-override');
-const banktrans = require("./module/trans")
+//const banktrans = require("./module/trans")
+const connectDB = require("./module/db");
+require('dotenv').config();
 
 
-app.use(express.urlencoded({extende:true}));
+app.use(express.urlencoded({extended:true}));
 app.set('view engine', 'ejs');
 app.set('views',path.join(__dirname,'view'));
 app.use(express.static(path.join(__dirname,'public')));
@@ -319,6 +321,7 @@ app.patch("/transfer/pay",async(req,res)=>{
     }
 })
 
-app.listen("8080",()=>{
+const port = process.env.PORT || 8080 ;
+app.listen(port,()=>{
     console.log("litening port 8080");
 })
