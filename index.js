@@ -18,7 +18,7 @@ var id = 0;
 var info = 0;
 
 // hoem page 
-app.get("/home",(req,res)=>{
+app.get("/",(req,res)=>{
     res.render("home.ejs",{message : "WELOCOME TO DEVELOPER BANK ATM"});
 
 })
