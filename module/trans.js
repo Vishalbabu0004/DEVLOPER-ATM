@@ -6,7 +6,7 @@ connectDB().then(()=>{
 .catch(err => console.log(err));
 
 async function connectDB() {
-  await mongoose.connect(MONGO_URL);
+  await mongoose.connect(process.env.MONGO_URL);
 }
 
 
