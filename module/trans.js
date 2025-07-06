@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 
-// main().then(()=>{
-//     console.log("connected Transaction databse");
-// })
-// .catch(err => console.log(err));
+connectDB().then(()=>{
+    console.log("connected Transaction databse");
+})
+.catch(err => console.log(err));
 
-// async function main() {
-//   await mongoose.connect('mongodb://127.0.0.1:27017/atm');
-// }
+async function connectDB() {
+  await mongoose.connect(MONGO_URL);
+}
 
 
 const atmschema = new mongoose.Schema({

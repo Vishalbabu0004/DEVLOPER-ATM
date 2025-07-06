@@ -4,11 +4,9 @@ const bank = require("./module/atm");
 const path = require("path");
 const methodOverride = require('method-override');
 const banktrans = require("./module/trans")
-const connectDB = require("./module/db");
-require('dotenv').config();
 
 
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({extende:true}));
 app.set('view engine', 'ejs');
 app.set('views',path.join(__dirname,'view'));
 app.use(express.static(path.join(__dirname,'public')));
@@ -19,6 +17,10 @@ var info = 0;
 
 // hoem page 
 app.get("/",(req,res)=>{
+    res.render("home.ejs",{message : "WELOCOME TO DEVELOPER BANK ATM"});
+
+})
+app.get("/home",(req,res)=>{
     res.render("home.ejs",{message : "WELOCOME TO DEVELOPER BANK ATM"});
 
 })
@@ -321,8 +323,6 @@ app.patch("/transfer/pay",async(req,res)=>{
     }
 })
 
-const port = process.env.PORT || 8080 ;
-app.listen(port,async()=>{
-    await connectDB();
+app.listen("8080",()=>{
     console.log("litening port 8080");
 })

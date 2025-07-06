@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 
-// main().then(()=>{
-//     console.log("connected databse");
-// })
-// .catch(err => console.log(err));
+connectDB().then(()=>{
+    console.log("connected databse");
+})
+.catch(err => console.log(err));
 
-// async function main() {
-//   await mongoose.connect(process.env.MONGO_URL);
-// }
+async function connectDB() {
+  await mongoose.connect(MONGO_URL);
+}
 
 
 const atmschema = new mongoose.Schema({
