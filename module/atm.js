@@ -11,7 +11,7 @@ const mongoose = require("mongoose");
 
 const atmConnection = mongoose.createConnection(process.env.ATM_DB, {
         useNewUrlParser : true,
-        useUnofiedTopology : true,
+        useUnifiedTopology : true,
 })
 
 
