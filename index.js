@@ -37,7 +37,7 @@ app.post("/account",async(req,res)=>{
         if(amount != typeof(String)){
             let user = await bank.find({password : confirmpassword})
         if(user.length == 0){
-              bank.insertOne({
+              bank.create({
         name: name,
         password: confirmpassword,
         totalbalance: amount
@@ -102,7 +102,7 @@ app.patch("/deposit",async(req,res)=>{
                 let user = await bank.find({password : id});
     let newbalance = user[0].totalbalance + Number(deposit);
 
-     await banktrans.insertOne({
+     await banktrans.create({
         user : user[0].name ,
         history : deposit,
         type : "Credit",
@@ -163,7 +163,7 @@ app.patch("/withdraw",async(req,res)=>{
     let newbalance = user[0].totalbalance - Number(withdraw);
 
 
-    await banktrans.insertOne({
+    await banktrans.create({
         user : user[0].name ,
         history : withdraw,
         type : "Debit",
@@ -214,7 +214,7 @@ app.patch("/bill/pay",async(req,res)=>{
     if(user[0].totalbalance >= bill && bill != typeof(String)){
 
 
-        await banktrans.insertOne({
+        await banktrans.create({
          user : user[0].name ,
         history : bill,
          type : "Debit",
@@ -295,7 +295,7 @@ app.patch("/transfer/pay",async(req,res)=>{
     if(transfer%100==0 && user[0].totalbalance >= transfer){
         
 
-        await banktrans.insertOne({
+        await banktrans.create({
         user : user[0].name ,  
         history : transfer,
          type : "Debit",
