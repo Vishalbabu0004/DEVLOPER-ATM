@@ -1,21 +1,16 @@
 const mongoose = require("mongoose");
 
-// connectDB().then(()=>{
-//     console.log("connected databse");
-// })
-// .catch(err => console.log(err));
-
-// async function connectDB() {
-//   await mongoose.connect(process.env.MONGO_URL);
-// }
-
-const atmConnection = mongoose.createConnection(process.env.ATM_DB, {
-        useNewUrlParser : true,
-        useUnifiedTopology : true,
+main().then(()=>{
+    console.log("connected databse");
 })
+.catch(err => console.log(err));
+
+async function main() {
+  await mongoose.connect('mongodb://127.0.0.1:27017/atm');
+}
 
 
-const atmSchema = new mongoose.Schema({
+const atmschema = new mongoose.Schema({
     name : {
         type : String,
         require : true
@@ -31,6 +26,6 @@ const atmSchema = new mongoose.Schema({
     },
    
 });
-const bank = atmConnection.model('bank', atmSchema);
+const bank = mongoose.model('bank', atmschema);
 
 module.exports = bank;
