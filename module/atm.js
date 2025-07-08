@@ -1,36 +1,32 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 
-
-
-async function main() {
-    try{
-        await mongoose.createConnection(process.env.ATM_URL);
-        console.log("connected mongodb ATM databse");
-    }catch(err) {
-        console.log("connecting error",err);
-    } 
-}
-
-main();
-
-
 const atmschema = new mongoose.Schema({
     name : {
         type : String,
-        require : true
+        required : true
     },
     password : {
         type : Number,
-        require:true,
+        required:true,
         unique : true
     },
-    totalbalance :{
-        type:Number,
-        require:true
+    totalbalance : {
+        type: Number,
+        required:true
     },
-   
 });
-const bank = mongoose.model('bank', atmschema);
+
+// ✅ Properly create and export model using a named connection
+const atmConnection = mongoose.createConnection(process.env.ATM_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+
+atmConnection.on("connected", () => {
+    console.log("✅ connected mongodb ATM database");
+});
+
+const bank = atmConnection.model('bank', atmschema);
 
 module.exports = bank;

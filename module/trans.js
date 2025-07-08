@@ -1,40 +1,35 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 
-
-
-async function main() {
-    try{
-        await mongoose.createConnection(process.env.TRANS_URL);
-        console.log("connected mongodb TRANS databse");
-    }catch(err) {
-        console.log("connecting error",err);
-    } 
-}
-
-main();
-
-const atmschema = new mongoose.Schema({
-  user : {
-    type : [String],
-    required: true
-  },
- 
+const transSchema = new mongoose.Schema({
+    user : {
+        type : String,
+        required: true
+    },
     history : {
-      type : Number,
-      required : true
+        type : Number,
+        required : true
     },
     type : {
-      type : String,
-      required : true
+        type : String,
+        required : true
     },
     date : {
-      type : Date,
-      required : true
+        type : Date,
+        required : true
     }
-  
-   
 });
-const banktrans = mongoose.model('banktrans', atmschema);
+
+// ✅ Properly create and export model using a named connection
+const transConnection = mongoose.createConnection(process.env.TRANS_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+
+transConnection.on("connected", () => {
+    console.log("✅ connected mongodb TRANS database");
+});
+
+const banktrans = transConnection.model('banktrans', transSchema);
 
 module.exports = banktrans;
