@@ -20,6 +20,10 @@ app.get("/",(req,res)=>{
     res.render("home.ejs",{message : "WELOCOME TO DEVELOPER BANK ATM"});
 
 })
+app.get("/home",(req,res)=>{
+    res.render("home.ejs",{message : "WELOCOME TO DEVELOPER BANK ATM"});
+
+})
 // account page
 app.get("/home/account",(req,res)=>{
     res.render("account.ejs");
