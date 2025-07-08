@@ -4,7 +4,7 @@ const bank = require("./module/atm");
 const path = require("path");
 const methodOverride = require('method-override');
 const banktrans = require("./module/trans")
-const Port = process.env.PORT || 3000;
+const Port = process.env.PORT || 8080;
 
 
 app.use(express.urlencoded({extended:true}));
