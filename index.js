@@ -4,6 +4,7 @@ const bank = require("./module/atm");
 const path = require("path");
 const methodOverride = require('method-override');
 const banktrans = require("./module/trans")
+const Port = process.env.PORT;
 
 
 app.use(express.urlencoded({extende:true}));
@@ -323,6 +324,7 @@ app.patch("/transfer/pay",async(req,res)=>{
     }
 })
 
-app.listen("8080",()=>{
-    console.log("litening port 8080");
+
+app.listen(Port,()=>{
+    console.log("litening your request");
 })
