@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 
 async function main() {
     try{
-        await mongoose.connect(process.env.TRANS_URL);
+        await mongoose.createConnection(process.env.TRANS_URL);
         console.log("connected mongodb TRANS databse");
     }catch(err) {
         console.log("connecting error",err);

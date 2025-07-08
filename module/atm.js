@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 
 async function main() {
     try{
-        await mongoose.connect(process.env.ATM_URL);
+        await mongoose.createConnection(process.env.ATM_URL);
         console.log("connected mongodb ATM databse");
     }catch(err) {
         console.log("connecting error",err);
