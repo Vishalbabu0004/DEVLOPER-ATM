@@ -16,7 +16,7 @@
       <h2 class="atm-title">Welcome to Developer Bank ATM</h2>
       
 
-      <h4 style="color: green;"><%= message %></span></span></h4>
+      <h4 style="color: green;">  <%= user[0].totalbalance == 0 ? "failed" : "success" %></span></span></h4>
      
       <br>
       <form method="get" action="/home">
