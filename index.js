@@ -160,7 +160,7 @@ app.patch("/withdraw",async(req,res)=>{
   let user = await bank.find({password : id});
     console.log(user);
     if(withdraw%100==0){
-        if(user[0].totalbalance >= withdraw){
+        if(user[0].totalbalance >== withdraw){
     let newbalance = user[0].totalbalance - Number(withdraw);
 
 
